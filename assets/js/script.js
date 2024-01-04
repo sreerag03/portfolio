@@ -49,6 +49,21 @@ for (let i = 0; i < testimonialsItem.length; i++) {
 
 }
 
+// light and dark mode
+let darkMode = false;
+
+function darklightmode() {
+    darkMode = !darkMode;
+
+    if (darkMode) {
+        document.documentElement.style.setProperty('--bg-color', '#000000');
+        document.documentElement.style.setProperty('--text-color', '#ffffff');
+    } else {
+        document.documentElement.style.setProperty('--bg-color', '#ffffff');
+        document.documentElement.style.setProperty('--text-color', '#000000');
+    }
+}
+
 // add click event to modal close button
 modalCloseBtn.addEventListener("click", testimonialsModalFunc);
 overlay.addEventListener("click", testimonialsModalFunc);
