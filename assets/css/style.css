@@ -154,10 +154,14 @@ input, textarea {
 :focus { outline-color: var(--orange-yellow-crayola); }
 
 html { font-family: var(--ff-poppins); }
-
+/* Normal theme */
 body { background: var(--smoky-black); 
-       background-color: var(--bg-color);
        color: var(--text-color);}
+/* Dark theme */
+body.dark-theme {
+ background-color: #333;
+ color: #f5f5f5;
+}
 
 
 
