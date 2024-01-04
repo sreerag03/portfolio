@@ -50,15 +50,17 @@ for (let i = 0; i < testimonialsItem.length; i++) {
 }
 
 // light and dark mode
-document.getElementById('darklightmode').addEventListener('change', function () {
-    if (this.checked) {
-        document.documentElement.style.setProperty('--bg-color', '#000000');
-        document.documentElement.style.setProperty('--text-color', '#ffffff');
+function darklightmode() {
+    // Check if the body class is "dark-theme" or not
+    if (document.body.classList.contains("dark-theme")) {
+      // If it is, remove the "dark-theme" class
+      document.body.classList.remove("dark-theme");
     } else {
-        document.documentElement.style.setProperty('--bg-color', '#ffffff');
-        document.documentElement.style.setProperty('--text-color', '#000000');
+      // If it's not, add the "dark-theme" class
+      document.body.classList.add("dark-theme");
     }
-});
+ }
+
 
 // add click event to modal close button
 modalCloseBtn.addEventListener("click", testimonialsModalFunc);
