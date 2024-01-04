@@ -52,17 +52,19 @@ for (let i = 0; i < testimonialsItem.length; i++) {
 // light and dark mode
 let darkMode = false;
 
-function darklightmode() {
+document.getElementById('darklightmode').addEventListener('click', function () {
     darkMode = !darkMode;
 
     if (darkMode) {
         document.documentElement.style.setProperty('--bg-color', '#000000');
         document.documentElement.style.setProperty('--text-color', '#ffffff');
+        this.textContent = 'Light Theme';
     } else {
         document.documentElement.style.setProperty('--bg-color', '#ffffff');
         document.documentElement.style.setProperty('--text-color', '#000000');
+        this.textContent = 'Dark Theme';
     }
-}
+});
 
 // add click event to modal close button
 modalCloseBtn.addEventListener("click", testimonialsModalFunc);
