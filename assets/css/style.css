@@ -312,6 +312,13 @@ main {
 /*-----------------------------------*\
   #SWITCH
 \*-----------------------------------*/
+.centered-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full height/width */
+}
+
 .switch {
  position: relative;
  display: inline-block;
