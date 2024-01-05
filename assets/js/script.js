@@ -50,16 +50,7 @@ for (let i = 0; i < testimonialsItem.length; i++) {
 }
 
 // light and dark mode
-function darklightmode() {
-    // Check if the body class is "dark-theme" or not
-    if (document.body.classList.contains("dark-theme")) {
-      // If it is, remove the "dark-theme" class
-      document.body.classList.remove("dark-theme");
-    } else {
-      // If it's not, add the "dark-theme" class
-      document.body.classList.add("dark-theme");
-    }
- }
+
 
 
 // add click event to modal close button
