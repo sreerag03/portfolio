@@ -1042,16 +1042,19 @@ input:checked + .slider:before {
 
 .project-item-icon-box {
   --scale: 0.8;
-
+  width: 100%;
+  height:200 px;
   background: var(--jet);
   color: var(--orange-yellow-crayola);
-  position: absolute;
+  position: relative;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(var(--scale));
   font-size: 20px;
   padding: 18px;
-  border-radius: 12px;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 15px;
   opacity: 0;
   z-index: 1;
   transition: var(--transition-1);
