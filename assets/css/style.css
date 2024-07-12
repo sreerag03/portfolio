@@ -1014,7 +1014,7 @@ input:checked + .slider:before {
 
 .project-img {
   position: relative;
-  width: 100%;
+  width: 220px;
   height: 200px;
   border-radius: 16px;
   overflow: hidden;
