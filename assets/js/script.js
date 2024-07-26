@@ -138,7 +138,54 @@ for (let i = 0; i < formInputs.length; i++) {
   });
 }
 
+// Track the time spent on the "About", "Resume", and "Projects" pages
+let startTime;
+let currentPage;
 
+const pageLoadTime = () => {
+  startTime = new Date().getTime();
+};
+
+const sendTimeSpentEvent = (page) => {
+  const endTime = new Date().getTime();
+  const timeSpent = Math.round((endTime - startTime) / 1000); // Time in seconds
+
+  gtag('event', 'time_spent', {
+    'event_category': 'Engagement',
+    'event_label': page,
+    'value': timeSpent
+  });
+};
+
+// Update page tracking
+const updatePageTracking = (page) => {
+  if (currentPage) {
+    sendTimeSpentEvent(currentPage);
+  }
+  currentPage = page;
+  pageLoadTime();
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Initial page load
+  currentPage = 'About'; // Set the initial page to "About"
+  pageLoadTime();
+
+  // Track navigation clicks
+  const navLinks = document.querySelectorAll('[data-nav-link]');
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      updatePageTracking(link.innerText);
+    });
+  });
+
+  // Track page unload to send the last page's time spent
+  window.addEventListener('beforeunload', () => {
+    if (currentPage) {
+      sendTimeSpentEvent(currentPage);
+    }
+  });
+});
 
 // page navigation variables
 const navigationLinks = document.querySelectorAll("[data-nav-link]");
