@@ -139,6 +139,7 @@ for (let i = 0; i < formInputs.length; i++) {
 }
 
 // Track the time spent on the "About", "Resume", and "Projects" pages
+// Track the time spent on the "About", "Resume", "Projects", and "Contact" pages
 let startTime;
 let currentPage;
 
@@ -157,13 +158,18 @@ const sendTimeSpentEvent = (page) => {
   });
 };
 
-// Update page tracking
 const updatePageTracking = (page) => {
   if (currentPage) {
     sendTimeSpentEvent(currentPage);
   }
   currentPage = page;
   pageLoadTime();
+
+  // Send page view event
+  gtag('event', 'page_view', {
+    'page_path': `/${page.toLowerCase()}`,
+    'page_title': page
+  });
 };
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -171,11 +177,18 @@ document.addEventListener('DOMContentLoaded', () => {
   currentPage = 'About'; // Set the initial page to "About"
   pageLoadTime();
 
+  // Send initial page view event
+  gtag('event', 'page_view', {
+    'page_path': '/about',
+    'page_title': 'About'
+  });
+
   // Track navigation clicks
   const navLinks = document.querySelectorAll('[data-nav-link]');
   navLinks.forEach(link => {
     link.addEventListener('click', () => {
-      updatePageTracking(link.innerText);
+      const page = link.getAttribute('data-nav-link');
+      updatePageTracking(page);
     });
   });
 
@@ -186,6 +199,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+//
 
 // page navigation variables
 const navigationLinks = document.querySelectorAll("[data-nav-link]");
