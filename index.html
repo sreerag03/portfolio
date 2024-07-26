@@ -31,7 +31,29 @@
   gtag('js', new Date());
 
   gtag('config', 'G-TE2TBPN6N7');
+
+  // Function to send event data to Google Analytics
+  function trackButtonClick(eventCategory, eventAction, eventLabel) {
+    gtag('event', eventAction, {
+      'event_category': eventCategory,
+      'event_label': eventLabel
+    });
+  }
+
+  // Adding event listeners for button clicks
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelector('[data-nav-link="Resume"]').addEventListener('click', function() {
+      trackButtonClick('Navigation', 'click', 'Resume');
+    });
+    document.querySelector('[data-nav-link="Projects"]').addEventListener('click', function() {
+      trackButtonClick('Navigation', 'click', 'Projects');
+    });
+    document.querySelector('[data-nav-link="Contact"]').addEventListener('click', function() {
+      trackButtonClick('Navigation', 'click', 'Contact');
+    });
+  });
 </script>
+
 </head>
 
 <body>
