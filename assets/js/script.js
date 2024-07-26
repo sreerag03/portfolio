@@ -158,16 +158,26 @@ const sendTimeSpentEvent = (page) => {
   });
 };
 
-const updatePageTracking = (page) => {
+const trackNavigationClick = (page) => {
+  gtag('event', 'navigation_click', {
+    'event_category': 'Navigation',
+    'event_label': page
+  });
+};
+
+const updatePageTracking = (page, path) => {
   if (currentPage) {
     sendTimeSpentEvent(currentPage);
   }
   currentPage = page;
   pageLoadTime();
 
+  // Update the browser history to reflect the new URL
+  history.pushState(null, '', path);
+
   // Send page view event
   gtag('event', 'page_view', {
-    'page_path': `/${page.toLowerCase()}`,
+    'page_path': path,
     'page_title': page
   });
 };
@@ -179,16 +189,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Send initial page view event
   gtag('event', 'page_view', {
-    'page_path': '/about',
+    'page_path': '/portfolio/about',
     'page_title': 'About'
   });
 
-  // Track navigation clicks
+  // Track navigation clicks and update page tracking
   const navLinks = document.querySelectorAll('[data-nav-link]');
   navLinks.forEach(link => {
     link.addEventListener('click', () => {
       const page = link.getAttribute('data-nav-link');
-      updatePageTracking(page);
+      const path = `/portfolio/${page.toLowerCase()}`;
+      trackNavigationClick(page); // Track the navigation click
+      updatePageTracking(page, path); // Update page tracking
     });
   });
 
@@ -199,6 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
 
 //
 
